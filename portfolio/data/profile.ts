@@ -1,0 +1,26 @@
+export const profile = {
+  name: "Juan Felipe Garavito",
+  role: "Software Developer in Progress",
+  tagline: "Building systems. Learning continuously. Engineering with intent.",
+  intro: "Construyo sistemas backend y aplicaciones web con Python, JavaScript y Java, mientras crezco como ingeniero de sistemas.",
+  about: "Estudiante de Ingeniería de Sistemas con enfoque en backend y desarrollo web full-stack. He desarrollado más de cinco proyectos con arquitecturas MVC, APIs RESTful y bases de datos relacionales, aplicando metodologías ágiles en cada etapa. Busco una posición de Desarrollador Junior para contribuir con soluciones técnicas eficientes, trabajar en equipo y acelerar mi crecimiento profesional.",
+  location: "Bogotá, Colombia",
+  email: "juanfelipegaravitofeo@gmail.com",
+  phone: "+57 310 363 9348",
+  linkedin: "https://www.linkedin.com/in/juan-felipe-garavito-feo-18664834a",
+  github: "https://github.com/jgaravitof-sys",
+  openToWork: true,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  stats: [
+    { label: "Semester", value: "7th" },
+    { label: "GPA", value: "4.11/5.0" },
+    { label: "Projects", value: "5+" },
+    { label: "Focus", value: "Backend / Full-stack" },
+  ],
+  education: "Ingeniería de Sistemas · Universidad Central · 2023 – 2028 · Graduación esperada: diciembre 2028",
+  certifications: [
+    "Fundamentos de Seguridad Informática — Fundación Capacítate para el Empleo",
+    "Cátedra de Ética Profesional — COPNIA",
+  ],
+  languages: ["Español: Nativo", "Inglés: Intermedio (B1)"],
+};
