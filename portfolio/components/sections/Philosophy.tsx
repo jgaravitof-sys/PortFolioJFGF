@@ -10,8 +10,8 @@ const principles = [
 export function Philosophy() {
   return (
     <section id="philosophy" aria-labelledby="philosophy-title" className="section border-t border-line">
-      <SectionHeading index="04 / HOW I BUILD" title="Engineering philosophy" />
-      <ol className="grid gap-8 sm:grid-cols-2">
+      <SectionHeading id="philosophy-title" index="04 / HOW I BUILD" title="Engineering philosophy" />
+      <ol data-avatar="block" className="grid gap-8 sm:grid-cols-2">
         {principles.map((p, i) => (
           <Reveal key={p.t} delay={i * 0.06}>
             <li className="border-t border-fg pt-4">

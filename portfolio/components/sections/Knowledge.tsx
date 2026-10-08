@@ -10,8 +10,8 @@ const icons: Record<string, LucideIcon> = {
 export function Knowledge() {
   return (
     <section id="knowledge" aria-labelledby="knowledge-title" className="section border-t border-line">
-      <SectionHeading index="02 / KNOWLEDGE" title="Technical index" />
-      <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <SectionHeading id="knowledge-title" index="02 / KNOWLEDGE" title="Technical index" />
+      <div data-avatar="block" className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((g, i) => {
           const Icon = icons[g.id];
           return (

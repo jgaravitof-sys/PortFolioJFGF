@@ -1,50 +1,53 @@
 "use client";
-import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-import type { SectionId } from "@/lib/sections";
-import { Avatar } from "./Avatar";
-import type { AvatarState } from "./types";
+import Image from "next/image";
+import { motion, useReducedMotion, useScroll, useMotionValueEvent, useSpring, useTransform, useVelocity } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { measureStops, targetAt, type Stop } from "./path";
 
-const SECTION_STATE: Record<SectionId, AvatarState> = {
-  hero: "idle", about: "idle", knowledge: "sitting", projects: "pointing", philosophy: "idle", code: "idle", contact: "celebrating",
-};
+const FLY = { stiffness: 90, damping: 20, mass: 1 }; // inercia suave: sensación de vuelo
 
-/** Acompaña el scroll: zigzag horizontal en desktop, fijo y compacto en móvil. */
-export function AvatarCompanion({ section }: { section: SectionId }) {
-  const { scrollYProgress, scrollY } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 22 });
-  const left = useTransform(progress, [0, 0.25, 0.5, 0.75, 1], ["84vw", "6vw", "84vw", "6vw", "78vw"]);
-  const [scrolling, setScrolling] = useState(false);
-  const [hover, setHover] = useState(false);
-  const [wide, setWide] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-  const lookX = useMotionValue(0);
-  const lookY = useMotionValue(0);
+/** Caballero que vuela por el carril libre guiando la lectura. Siempre de frente. */
+export function AvatarCompanion() {
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const x = useSpring(0, FLY);
+  const y = useSpring(0, FLY);
+  const lean = useSpring(useTransform(useVelocity(x), [-1500, 1500], [-9, 9]), { stiffness: 120, damping: 18 });
+  const stops = useRef<Stop[]>([]);
+  const [size, setSize] = useState(0);
 
-  useMotionValueEvent(scrollY, "change", () => {
-    setScrolling(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setScrolling(false), 180);
-  });
+  const apply = useCallback((s: number, instant = false) => {
+    const p = targetAt(stops.current, s);
+    if (!p) return;
+    if (instant) { x.jump(p.x); y.jump(p.y); } else { x.set(p.x); y.set(p.y); }
+  }, [x, y]);
+
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const sync = () => setWide(mq.matches);
-    sync(); mq.addEventListener("change", sync);
-    const move = (e: PointerEvent) => {
-      lookX.set((e.clientX / window.innerWidth) * 2 - 1);
-      lookY.set((e.clientY / window.innerHeight) * 2 - 1);
+    let first = true;
+    const measure = () => {
+      const m = measureStops();
+      stops.current = m.stops;
+      setSize(m.size);
+      apply(window.scrollY, first);
+      first = false;
     };
-    window.addEventListener("pointermove", move, { passive: true });
-    return () => { mq.removeEventListener("change", sync); window.removeEventListener("pointermove", move); };
-  }, [lookX, lookY]);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.body);
+    window.addEventListener("resize", measure);
+    return () => { ro.disconnect(); window.removeEventListener("resize", measure); };
+  }, [apply]);
 
-  const state: AvatarState = hover ? "celebrating" : scrolling ? "walking" : SECTION_STATE[section];
+  useMotionValueEvent(scrollY, "change", (s) => apply(s));
+
+  if (!size) return null;
   return (
-    <motion.div className="pointer-events-none fixed bottom-4 z-30 size-14 md:size-20"
-      style={wide ? { left } : { right: 12 }}>
-      <div className="pointer-events-auto size-full" onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
-        <Avatar state={state} lookX={lookX} lookY={lookY} />
-      </div>
+    <motion.div aria-hidden className="pointer-events-none absolute left-0 top-0 z-30" style={{ x, y, width: size, height: size }}>
+      <motion.div className="size-full" style={{ rotate: reduce ? 0 : lean }}>
+        <div className={`relative size-full ${reduce ? "" : "avatar-float"}`}>
+          <Image src="/avatar/knight-front.webp" alt="" fill sizes="128px" priority className="object-contain object-bottom" />
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

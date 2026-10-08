@@ -13,9 +13,9 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="section border-t border-line">
       <Reveal>
         <p className="eyebrow">06 / CONTACT</p>
-        <h2 id="contact-title" className="mt-3 text-4xl font-semibold uppercase tracking-tight md:text-7xl">Let&apos;s build<br />something</h2>
+        <h2 id="contact-title" data-avatar="title" className="mt-3 w-fit text-3xl sm:text-5xl font-semibold uppercase tracking-tight md:text-7xl">Let&apos;s build<br />something</h2>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-mut">Si buscas un desarrollador junior con interés en backend, desarrollo web y aprendizaje continuo, me gustaría conversar.</p>
-        <a href={`mailto:${profile.email}`} className="btn btn-primary mt-8">GET IN TOUCH <ArrowRight size={16} aria-hidden /></a>
+        <a href={`mailto:${profile.email}`} data-avatar="title" className="btn btn-primary mt-8">GET IN TOUCH <ArrowRight size={16} aria-hidden /></a>
       </Reveal>
       <Reveal delay={0.1}>
         <ul className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2">

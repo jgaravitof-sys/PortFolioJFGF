@@ -12,7 +12,7 @@ export function SiteShell({ children, footer }: { children: React.ReactNode; foo
       <a href="#about" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-fg focus:px-3 focus:py-2 focus:text-bg">Saltar al contenido</a>
       <ScrollProgress />
       <Nav active={active} />
-      <AvatarCompanion section={active} />
+      <AvatarCompanion />
       <main>{children}</main>
       {footer}
     </>
