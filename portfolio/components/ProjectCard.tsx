@@ -19,7 +19,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
         <h3 className="text-lg font-semibold leading-snug">
           <Link href={`/projects/${p.slug}`} className="after:absolute after:inset-0 focus-visible:outline-none">{p.title}</Link>
         </h3>
-        <p className="text-sm leading-relaxed text-mut">{p.description}</p>
+        <p className="justify-body text-sm leading-relaxed text-mut">{p.description}</p>
         <ul className="flex flex-wrap gap-1.5" aria-label="Tecnologías">
           {p.technologies.map((t) => <li key={t} className="border border-line px-2 py-0.5 font-mono text-[11px] text-mut">{t}</li>)}
         </ul>

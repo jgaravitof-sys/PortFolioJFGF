@@ -1,5 +1,6 @@
 import { profile } from "@/data/profile";
 import { Reveal } from "../Reveal";
+import { Certifications } from "../Certifications";
 import { SectionHeading } from "../SectionHeading";
 
 export function About() {
@@ -8,7 +9,7 @@ export function About() {
       <SectionHeading id="about-title" index="01 / ABOUT ME" title="Quién soy" />
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal avatar="block" className="md:col-span-3">
-          <p className="text-xl leading-relaxed md:text-2xl">{profile.about}</p>
+          <p className="justify-body text-xl leading-relaxed md:text-2xl">{profile.about}</p>
           <p className="mt-6 font-mono text-xs leading-relaxed tracking-wide text-mut">{profile.education}</p>
         </Reveal>
         <Reveal delay={0.1} avatar="block" className="md:col-span-2">
@@ -20,12 +21,11 @@ export function About() {
               </div>
             ))}
           </dl>
-          <h3 className="eyebrow mt-8">CERTIFICACIONES</h3>
-          <ul className="mt-3 space-y-2 text-sm text-mut">{profile.certifications.map((c) => <li key={c}>{c}</li>)}</ul>
-          <h3 className="eyebrow mt-6">IDIOMAS</h3>
+          <h3 className="eyebrow mt-8">IDIOMAS</h3>
           <p className="mt-3 text-sm text-mut">{profile.languages.join(" · ")}</p>
         </Reveal>
       </div>
+      <Certifications />
     </section>
   );
 }

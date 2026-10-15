@@ -11,7 +11,7 @@ export function CodeSection() {
       <SectionHeading id="code-title" index="05 / MY CODE" title="Building in public" />
       <Reveal avatar="block" className="grid gap-8 md:grid-cols-2">
         <div>
-          <p className="text-lg leading-relaxed text-mut">Mi código vive en GitHub. Ahí puedes revisar cómo estructuro, nombro y versiono cada proyecto.</p>
+          <p className="justify-body text-lg leading-relaxed text-mut">Mi código vive en GitHub. Ahí puedes revisar cómo estructuro, nombro y versiono cada proyecto.</p>
           <a href={profile.github} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-6"><Github size={16} aria-hidden />github.com/jgaravitof-sys<ArrowUpRight size={16} aria-hidden /></a>
         </div>
         <ul className="divide-y divide-line border border-line">

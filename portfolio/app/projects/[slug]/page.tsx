@@ -25,14 +25,14 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <p className="eyebrow">PROJECT {String(p.id).padStart(2, "0")} · {p.type.toUpperCase()}</p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">{p.title}</h1>
       <div className="my-8 aspect-[16/9] overflow-hidden border border-line p-2"><ProjectThumb kind={p.kind} /></div>
-      <Block title="OVERVIEW"><p>{p.description}</p></Block>
-      <Block title="PROBLEM"><p>{TBD}</p></Block>
-      <Block title="SOLUTION"><p>{TBD}</p></Block>
+      <Block title="OVERVIEW"><p className="justify-body">{p.description}</p></Block>
+      <Block title="PROBLEM"><p className="justify-body">{TBD}</p></Block>
+      <Block title="SOLUTION"><p className="justify-body">{TBD}</p></Block>
       <Block title="TECHNOLOGIES"><ul className="flex flex-wrap gap-2">{p.technologies.map((t) => <li key={t} className="border border-line px-2 py-1 font-mono text-xs">{t}</li>)}</ul></Block>
-      <Block title="ARCHITECTURE"><p>{p.architecture ?? TBD}</p></Block>
+      <Block title="ARCHITECTURE"><p className="justify-body">{p.architecture ?? TBD}</p></Block>
       <Block title="KEY FEATURES"><ul className="list-disc space-y-1 pl-5">{p.features.map((f) => <li key={f}>{f}</li>)}</ul></Block>
-      <Block title="CHALLENGES"><p>{TBD}</p></Block>
-      <Block title="WHAT I LEARNED"><p>{TBD}</p></Block>
+      <Block title="CHALLENGES"><p className="justify-body">{TBD}</p></Block>
+      <Block title="WHAT I LEARNED"><p className="justify-body">{TBD}</p></Block>
       <Block title="STATUS"><p className="font-mono text-xs tracking-widest text-fg">{p.status}</p></Block>
       <Block title="SOURCE CODE / LIVE DEMO">
         <div className="flex flex-wrap gap-3">

@@ -1,5 +1,4 @@
 import { profile } from "@/data/profile";
-import { VisitCounter } from "../VisitCounter";
 
 export function Footer() {
   return (
@@ -16,7 +15,6 @@ export function Footer() {
           <a className="link" href={`mailto:${profile.email}`}>Email</a>
         </nav>
         <div className="flex flex-col gap-3 md:items-end">
-          <VisitCounter />
           <p className="font-mono text-[11px] text-mut">2026 © {profile.name}</p>
         </div>
       </div>

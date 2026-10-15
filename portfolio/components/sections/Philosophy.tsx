@@ -17,7 +17,7 @@ export function Philosophy() {
             <li className="border-t border-fg pt-4">
               <span className="eyebrow">0{i + 1}</span>
               <h3 className="mt-2 text-lg font-semibold">{p.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-mut">{p.d}</p>
+              <p className="justify-body mt-2 text-sm leading-relaxed text-mut">{p.d}</p>
             </li>
           </Reveal>
         ))}

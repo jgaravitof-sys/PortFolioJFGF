@@ -22,6 +22,9 @@ Sin variables, o si Supabase falla, el footer muestra `VISITORS —` y el sitio 
 - `data/profile.ts` — datos personales (del CV)
 - `data/skills.ts` — mosaico de conocimiento
 - `data/projects.ts` — proyectos. Para agregar uno, añade un objeto; la tarjeta y `/projects/[slug]` se generan solos. Si es un `kind` nuevo, añade su escena en `components/ProjectThumb.tsx`.
+- `data/certifications.ts` — certificaciones y su enlace directo (cada una con su `url`).
+- **Hoja de vida:** reemplaza `public/cv/Juan_Felipe_Garavito_Hoja_de_Vida.pdf` por el nuevo PDF (mismo nombre) y el botón DOWNLOAD CV lo sirve.
+- **Redes:** `linkedin` e `instagram` en `data/profile.ts`.
 - **Live Demo:** pon la URL de Render en `liveUrl` y el botón aparece solo.
 - Repos de los proyectos 05 y 06: `NEXT_PUBLIC_PROJECT_05_REPO` / `_06_REPO`.
 
